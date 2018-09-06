@@ -1,7 +1,91 @@
-// import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
+import { reducer as formReducer } from "redux-form";
 
-// const initialState = {};
+export interface IStore {
+  [index: number]: {
+    id: number;
+    content: string;
+    author: string;
+    avatar: string;
+  };
+}
 
-// const reducer = state => state;
+export interface IReducer {
+  action: () => void;
+}
 
-// export default createStore(reducer, initialState);
+const initialState = {
+  tweets: [
+    {
+      id: 2,
+      content: "You give love a bad name.",
+      author: "JeffreyATW",
+      avatar: "avatar.jpg"
+    },
+    {
+      id: 1,
+      content: "Old McDonald had a farm.",
+      author: "JeffreyATW",
+      avatar: "avatar.jpg"
+    },
+    {
+      id: 0,
+      content: "I'm a little teapot, short and stout.",
+      author: "JeffreyATW",
+      avatar: "avatar.jpg"
+    }
+  ]
+};
+
+function reducer(state: any, action: any) {
+  switch (action.type) {
+    case "ADD_TWEET":
+      return {
+        tweets: [
+          {
+            content: action.text,
+            author: "JeffreyATW",
+            avatar: "avatar.jpg",
+            time: "now",
+            id: state.tweets[0].id + 1
+          },
+          ...state.tweets
+        ]
+      };
+
+    default:
+      return state;
+  }
+}
+
+// const reducer = ((state: any), (action: any)) => {
+//   switch (action.type) {
+//     case "ADD_TWEET":
+//       return {
+//         tweets: [
+//           {
+//             content: action.text,
+//             author: "JeffreyATW",
+//             avatar: "avatar.jpg",
+//             time: "now",
+//             id: state.tweets[0].id + 1
+//           },
+//           ...state.tweets
+//         ]
+//       };
+
+//     default:
+//       return state;
+//   }
+// };
+
+const rootReducer = combineReducers({
+  reduce: reducer,
+  // ...your other reducers here
+  // you have to pass formReducer under 'form' key,
+  // for custom keys look up the docs for 'getFormState'
+  // reducer: reducer,
+  form: formReducer
+});
+
+export default createStore<any, any, any, any>(rootReducer, initialState);
