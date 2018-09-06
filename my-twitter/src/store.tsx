@@ -1,18 +1,18 @@
 import { combineReducers, createStore } from "redux";
 import { reducer as formReducer } from "redux-form";
 
-export interface IStore {
-  [index: number]: {
-    id: number;
-    content: string;
-    author: string;
-    avatar: string;
-  };
-}
+// export interface IStore {
+//   [index: number]: {
+//     id: number;
+//     content: string;
+//     author: string;
+//     avatar: string;
+//   };
+// }
 
-export interface IReducer {
-  action: () => void;
-}
+// export interface IReducer {
+//   action: () => void;
+// }
 
 const initialState = {
   tweets: [
@@ -37,16 +37,15 @@ const initialState = {
   ]
 };
 
-function reducer(state: any, action: any) {
+function myReducer(state: any, action: any) {
   switch (action.type) {
     case "ADD_TWEET":
       return {
         tweets: [
           {
-            content: action.text,
             author: "JeffreyATW",
             avatar: "avatar.jpg",
-            time: "now",
+            content: action.text,
             id: state.tweets[0].id + 1
           },
           ...state.tweets
@@ -80,12 +79,12 @@ function reducer(state: any, action: any) {
 // };
 
 const rootReducer = combineReducers({
-  reduce: reducer,
+  form: formReducer,
+  reduce: myReducer
   // ...your other reducers here
   // you have to pass formReducer under 'form' key,
   // for custom keys look up the docs for 'getFormState'
   // reducer: reducer,
-  form: formReducer
 });
 
-export default createStore<any, any, any, any>(rootReducer, initialState);
+export default createStore(rootReducer, initialState);
