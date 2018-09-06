@@ -10,15 +10,15 @@ import { reducer as formReducer } from "redux-form";
 //   };
 // }
 
+export interface ITweet {
+  author: string;
+  avatar: string;
+  content: string;
+  id: number;
+}
+
 export interface IStore {
-  tweets: [
-    {
-      id: number;
-      content: string;
-      author: string;
-      avatar: string;
-    }
-  ];
+  tweets: ITweet[];
 }
 
 // export interface IReducer {
