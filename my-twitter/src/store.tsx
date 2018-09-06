@@ -10,6 +10,17 @@ import { reducer as formReducer } from "redux-form";
 //   };
 // }
 
+export interface IStore {
+  tweets: [
+    {
+      id: number;
+      content: string;
+      author: string;
+      avatar: string;
+    }
+  ];
+}
+
 // export interface IReducer {
 //   action: () => void;
 // }
@@ -37,7 +48,7 @@ const initialState = {
   ]
 };
 
-function myReducer(state: any, action: any) {
+function myReducer(state: IStore, action: any) {
   switch (action.type) {
     case "ADD_TWEET":
       return {
