@@ -87,4 +87,6 @@ const rootReducer = combineReducers({
   // reducer: reducer,
 });
 
-export default createStore(rootReducer, initialState);
+const store = createStore(rootReducer, initialState);
+
+export default store;
