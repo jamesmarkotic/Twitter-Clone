@@ -28,22 +28,22 @@ export interface IStore {
 const initialState = {
   tweets: [
     {
-      id: 2,
+      author: "JeffreyATW",
+      avatar: "avatar.jpg",
       content: "You give love a bad name.",
-      author: "JeffreyATW",
-      avatar: "avatar.jpg"
+      id: 2
     },
     {
-      id: 1,
+      author: "JeffreyATW",
+      avatar: "avatar.jpg",
       content: "Old McDonald had a farm.",
-      author: "JeffreyATW",
-      avatar: "avatar.jpg"
+      id: 1
     },
     {
-      id: 0,
-      content: "I'm a little teapot, short and stout.",
       author: "JeffreyATW",
-      avatar: "avatar.jpg"
+      avatar: "avatar.jpg",
+      content: "I'm a little teapot, short and stout.",
+      id: 0
     }
   ]
 };
@@ -98,6 +98,6 @@ const rootReducer = combineReducers({
   // reducer: reducer,
 });
 
-const store = createStore<any, any, any, any>(rootReducer, initialState);
+const store = createStore(rootReducer, initialState);
 
 export default store;
